@@ -116,7 +116,10 @@ Now we are going to create a JSON file containing only the valid articles, all b
 ```bash
 # Navigate back to the parser folder
 cd $IR_PROJECT_ROOT/../Parser
- 
+
+# Install the dependencies from maven
+mvn clean install
+
 # Execute the conversion process
 mvn exec:java -Dexec.args="$IR_PROJECT_ROOT/apache-nutch-1.13/htmlDump $IR_PROJECT_ROOT/dump.json"
 ```
