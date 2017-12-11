@@ -115,7 +115,7 @@ Now we are going to create a JSON file containing only the valid articles, all b
 
 ```bash
 # Navigate back to the parser folder
-cd $IR_PROJECT_ROOT/TiNews/Parser
+cd $IR_PROJECT_ROOT/../Parser
  
 # Execute the conversion process
 mvn exec:java -D"exec.mainClass"="Main" -Dexec.args="$IR_PROJECT_ROOT/apache-nutch-1.13/htmlDump $IR_PROJECT_ROOT/dump.json"
@@ -192,7 +192,7 @@ In order to run the client, any webserver will do. In my case I decided to use C
 
 ```bash
 # Get into the frontend folder
-cd $IR_PROJECT_ROOT/TiNews/Frontend
+cd $IR_PROJECT_ROOT/../Frontend
 
 # Run the server!
 caddy

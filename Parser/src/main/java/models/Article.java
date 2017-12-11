@@ -1,4 +1,4 @@
-import java.util.Date;
+package models;
 
 public class Article {
     int id;

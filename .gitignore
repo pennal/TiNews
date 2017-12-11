@@ -22,3 +22,4 @@
 hs_err_pid*
 /Parser/IRParser.iml
 /Parser/.idea
+/Parser/target

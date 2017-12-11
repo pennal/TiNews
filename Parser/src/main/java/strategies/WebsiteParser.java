@@ -3,8 +3,6 @@ package strategies;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import java.util.Date;
-
 public abstract class WebsiteParser {
     protected Document document;
 
