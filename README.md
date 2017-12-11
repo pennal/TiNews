@@ -118,7 +118,7 @@ Now we are going to create a JSON file containing only the valid articles, all b
 cd $IR_PROJECT_ROOT/../Parser
  
 # Execute the conversion process
-mvn exec:java -D"exec.mainClass"="Main" -Dexec.args="$IR_PROJECT_ROOT/apache-nutch-1.13/htmlDump $IR_PROJECT_ROOT/dump.json"
+mvn exec:java -Dexec.args="$IR_PROJECT_ROOT/apache-nutch-1.13/htmlDump $IR_PROJECT_ROOT/dump.json"
 ```
 
 Once this process is done, we need to seed the data into Solr, and get it ready to run. This is shown in the next section
