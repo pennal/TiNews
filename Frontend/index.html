@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>TiNews</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <style>
+      #content {
+        height: 100vh;
+        width: 100vw;
+        /*background-color: red;*/
+      }
+
+      
+
+      #mainInput {
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        font-size: 20px;
+        outline: none;
+        /*border: none !important;*/
+        /*border-bottom: 2px solid grey !important;*/
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+      }
+
+      .fullHeight {
+         height: 100vh;
+      }
+
+      .fullHeight > div {
+        padding: 0px;
+        margin-top: -100px;
+      }
+
+      #mainLogo {
+        font-size: 50px;
+        margin-bottom: 0px;
+      }
+
+      .myRed {
+        color: red;
+      }
+
+      .myBlue {
+        color: blue;
+      }
+
+      .fixedTop {
+        position: fixed;
+      }
+
+      .resultCard {
+        margin-top: 20px;
+      }
+
+      .resultCard:last-child {
+        margin-bottom: 20px;
+      }
+
+      mark{
+        font-weight: bold;
+        background: none;
+      }
+
+
+
+      /* styles for '...' */ 
+      .block-with-text {
+        /* hide text if it more than N lines  */
+        overflow: hidden;
+        /* for set '...' in absolute position */
+        position: relative; 
+        /* use this value to count block height */
+        line-height: 1.2em;
+        /* max-height = line-height (1.2) * lines max number (3) */
+        max-height: 2.4em; 
+        /* fix problem when last visible word doesn't adjoin right side  */
+        text-align: justify;  
+        /* place for '...' */
+        margin-right: -1em;
+        padding-right: 1em;
+      }
+      /* create the ... */
+      .block-with-text:before {
+        /* points in the end */
+        content: '...';
+        /* absolute position */
+        position: absolute;
+        /* set position to right bottom corner of block */
+        right: 0;
+        bottom: 0;
+      }
+      /* hide ... if we have text, which is less than or equal to max lines */
+      .block-with-text:after {
+        /* points in the end */
+        content: '';
+        /* absolute position */
+        position: absolute;
+        /* set position to right bottom corner of text */
+        right: 0;
+        /* set width and height */
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        /* bg color = bg color under block */
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div id="content">
+      <div class="row justify-content-center align-items-center fullHeight" id="containerRow">
+        <div class="col-lg-6 col-md-8 col-xs-10" id="inputContainer">
+          <div id="mainLogoContainer">
+            <p class="text-center" id="mainLogo"><a href="/" style="text-decoration: none"><span class="myRed">Ti</span><span class="myBlue">News</span></a>
+              <p class="text-center" style="font-size: 20px;">Ticino News Search Engine</p>
+            </p>
+          </div>
+          <div class="input-group">
+            <input id="mainInput" type="text" name="mainInput">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button" id="searchButton">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    <div class="row justify-content-center" id="results">
+        
+    </div>
+  </div>
+
+    <script id="resultsTemplate" type="text/x-handlebars-template">
+      {{#each this}}
+        <div class="row card resultCard" style="width: 60%">
+        <div class="card-body">
+
+          <h4 class="card-title"><a target=_blank href="{{url}}">{{title}}</a></h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{url_friendly}}</h6>
+          <p class="card-text block-with-text">{{content}}</p>
+          <!-- <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a> -->
+        </div>
+      </div>
+      {{else}}
+      <p style="margin-top: 40px;">No results found for your query!</p>
+      {{/each}}
+    </script>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/8e2ddc18b0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.0/jquery.mark.min.js"></script>
+
+
+    <script type="text/javascript">
+      var textField = $('#mainInput');
+
+      $(textField).keypress(function(e) {
+        // enter pressed!
+        if (e.which === 13) {
+          sendRequest();
+        }
+      });
+
+      $("#searchButton").click(function(e) {
+        e.preventDefault();
+        sendRequest();
+      });
+
+      function sendRequest() {
+        var queryString = $(textField).val();
+        console.log("[GET] - query string " + queryString);
+
+        
+        var url = "http://localhost:8983/solr/nutch/select?defType=edismax&df=content&indent=on&q=" + queryString + "&qf=title^2%20content&rows=100&wt=json";
+        console.log(url);
+        $.getJSON(url, function(data) {
+          
+          console.log(JSON.stringify(data));
+          data = data.response.docs;
+          console.log("Received data. Length: " + data.length);
+
+          for (var i = 0; i < data.length; i++) {
+            if (typeof data[i] != "undefined" && typeof data[i].url != "undefined" && typeof data[i].url[0] != "undefined") {
+              data[i].url_friendly = extractRootDomain(data[i].url[0]);
+            }
+          }
+
+          console.log("Finished rendering");
+
+
+          var source   = $('#resultsTemplate').html();
+          var template = Handlebars.compile(source);
+          var html    = template(data);
+          $("#results").html(html);
+          console.log("Injecting results");
+          $(".card-text").mark(queryString.split(" "));
+        })
+
+
+        // when request is finished, we remove the size class that makes it so it is in the middle
+        $("#containerRow").removeClass("fullHeight")
+      }
+
+
+      function extractRootDomain(url) {
+        var domain = extractHostname(url),
+            splitArr = domain.split('.'),
+            arrLen = splitArr.length;
+
+        //extracting the root domain here
+        //if there is a subdomain 
+        if (arrLen > 2) {
+            domain = splitArr[arrLen - 2] + '.' + splitArr[arrLen - 1];
+            //check to see if it's using a Country Code Top Level Domain (ccTLD) (i.e. ".me.uk")
+            if (splitArr[arrLen - 1].length == 2 && splitArr[arrLen - 1].length == 2) {
+                //this is using a ccTLD
+                domain = splitArr[arrLen - 3] + '.' + domain;
+            }
+        }
+        return domain;
+    }
+
+    function extractHostname(url) {
+        var hostname;
+        //find & remove protocol (http, ftp, etc.) and get hostname
+
+        if (url.indexOf("://") > -1) {
+            hostname = url.split('/')[2];
+        }
+        else {
+            hostname = url.split('/')[0];
+        }
+
+        //find & remove port number
+        hostname = hostname.split(':')[0];
+        //find & remove "?"
+        hostname = hostname.split('?')[0];
+
+        return hostname;
+    }
+
+    </script>
+  </body>
+</html>
