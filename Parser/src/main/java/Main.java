@@ -27,6 +27,7 @@ public class Main {
         // Get the paths
         String currentPath = args[0];
         String jsonPath = args[1];
+        String parserType = args[2];
 
 
         // Check they are not empty
@@ -38,6 +39,14 @@ public class Main {
             throw new IllegalArgumentException("Missing path to json file");
         }
 
+        if (jsonPath.equals("")) {
+            throw new IllegalArgumentException("Missing path to json file");
+        }
+
+        if (parserType.equals("")) {
+            throw new IllegalArgumentException("Missing parser type");
+        }
+
 
         List<Article> articleList = new ArrayList<>();
 
@@ -45,13 +54,14 @@ public class Main {
             WebsiteParser p = null;
 
 
-            if (currentPath.contains("tio")) {
+            if (parserType.contains("tio")) {
                 p = new TIOParser();
-            } else if (currentPath.contains("caffe")) {
+            } else if (parserType.contains("caffe")) {
                 p = new CaffeParser();
-            } else if (currentPath.contains("ticinonews")) {
+            } else if (parserType.contains("ticinonews")) {
                 p = new TicinonewsParser();
             } else {
+                System.err.println("Wrong parser type given!");
                 System.exit(1);
             }
 

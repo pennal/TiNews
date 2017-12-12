@@ -121,7 +121,8 @@ cd $IR_PROJECT_ROOT/../Parser
 mvn clean install
 
 # Execute the conversion process
-mvn exec:java -Dexec.args="$IR_PROJECT_ROOT/apache-nutch-1.13/htmlDump $IR_PROJECT_ROOT/dump.json"
+# <parserType> can be any of tio, ticinonews or caffe
+mvn exec:java -Dexec.args="$IR_PROJECT_ROOT/apache-nutch-1.13/htmlDump $IR_PROJECT_ROOT/dump.json <parserType>"
 ```
 
 Once this process is done, we need to seed the data into Solr, and get it ready to run. This is shown in the next section
